@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free finance calculators: loan EMI, mortgage, compound interest, sales tax, VAT, discounts, profit margin and salary to hourly pay, with the working shown." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/calculators/finance/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Finance Calculators: EMI, Interest, Tax · Humpy Calculator" />
+  <meta property="og:description" content="Free finance calculators: loan EMI, mortgage, compound interest, sales tax, VAT, discounts, profit margin and salary to hourly pay, with the working shown." />
+  <meta property="og:url" content="https://humpycalculator.com/calculators/finance/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <title>Finance Calculators: EMI, Interest, Tax · Humpy Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../shared/css/base.css" />
+  <link rel="stylesheet" href="../../shared/css/navbar.css" />
+  <link rel="stylesheet" href="../../shared/css/footer.css" />
+  <link rel="stylesheet" href="../../shared/css/calculator.css" />
+  <link rel="stylesheet" href="../../calculators/finance/finance.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="calc-hero">
+    <div class="wrap">
+      <h1>Finance Calculators</h1>
+      <p>Loans, tax, interest and everyday money math.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- data-category must match the folder name and the key used in finance/finance.js -->
+    <div class="split-pane" id="calculator-app" data-category="finance">
+      <!-- LEFT: operation + inputs (filled by calculator-engine.js) -->
+      <div class="pane pane-left">
+        <div class="field-group">
+          <label for="operation-select">Select operation</label>
+          <select id="operation-select"></select>
+        </div>
+        <div id="dynamic-fields"></div>
+        <button class="btn btn-primary btn-block" id="calculate-btn">Calculate Result</button>
+      </div>
+
+      <!-- RIGHT: step-by-step solution -->
+      <div class="pane pane-right">
+        <div class="pane-right-head">
+          <h3>Solution</h3>
+          <span class="badge" id="solution-badge">Ready</span>
+        </div>
+        <div id="solution-body">
+          <p class="solution-placeholder">Fill in the values on the left and press Calculate Result to see a step-by-step solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculation details, common formulas + related calculators -->
+    <div id="calculation-info" class="calculation-info-wrap" aria-live="polite"></div>
+
+    <div class="calc-lower">
+      <div>
+        <h2 class="section-title">Common formulas</h2>
+        <div class="formula-list" id="formula-list"></div>
+      </div>
+      <div>
+        <h2 class="section-title">Related calculators</h2>
+        <div class="related-list" id="related-list"></div>
+      </div>
+    </div>
+
+    <!-- GUIDE:START (written content; edit freely, keep it plain HTML) -->
+    <section class="calc-guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">About the Finance calculators</h2>
+    <div class="guide-intro"><p>These calculators help you estimate loan instalments, compound growth, tax, discounts, margins and pay. Each result comes with its formula and working, so you can see exactly how the figure was reached.</p><p>Results are estimates for planning and comparing options. Banks and tax offices may add fees, use different rounding or follow their own rules, so confirm important figures with your lender or an official source.</p></div>
+    <h3>What you can calculate</h3>
+    <ul class="guide-tags"><li>Loan / EMI</li><li>Mortgage</li><li>Compound Interest</li><li>Sales Tax</li><li>VAT</li><li>Discount</li><li>Margin</li><li>Salary-to-Hourly</li></ul>
+    <h3>Worked examples</h3>
+    <div class="guide-examples"><article class="guide-example"><h4>Loan EMI</h4><p>Loan: Rs 500,000</p><p>Rate: 12% a year, tenure: 36 months</p><p class="guide-answer">Monthly EMI: Rs 16,607.15 · Total payable: Rs 597,857.58</p></article><article class="guide-example"><h4>Compound interest</h4><p>Principal: Rs 100,000</p><p>Rate: 10% a year, compounded monthly, 5 years</p><p class="guide-answer">Final amount: Rs 164,530.89 · Interest earned: Rs 64,530.89</p></article><article class="guide-example"><h4>Discount</h4><p>Price: Rs 4,000</p><p>Discount: 25%</p><p class="guide-answer">You pay: Rs 3,000.00 · You save: Rs 1,000.00</p></article></div>
+    <h3>Tips for accurate results</h3>
+    <ul class="guide-tips"><li>Enter the annual interest rate as a plain percentage (12, not 0.12). The EMI calculator takes the tenure in months; the Mortgage calculator takes it in years.</li><li>Margin and markup are different. With cost 600 and selling price 800, the margin is 25% (profit ÷ selling price) and the markup is 33.33% (profit ÷ cost).</li><li>The currency menu only changes the symbol shown in the result. It does not convert money.</li></ul>
+    <h3>Frequently asked questions</h3>
+    <div class="guide-faq"><details><summary>What is EMI and how is it calculated?</summary><p>EMI is the fixed amount you pay each month on a loan. The formula is EMI = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the loan amount, r is the monthly rate (annual rate ÷ 12 ÷ 100) and n is the number of months.</p></details><details><summary>Does the loan calculator include bank fees or insurance?</summary><p>No. It uses only the amount, the interest rate and the tenure. Processing fees, insurance and taxes are not included, so your bank’s own schedule can differ a little.</p></details><details><summary>What does compounding frequency mean?</summary><p>It is how often interest is added to the balance. Monthly compounding adds interest 12 times a year. The more often interest is added, the slightly faster the balance grows.</p></details><details><summary>What is the difference between adding VAT and extracting VAT?</summary><p>Adding VAT takes a price without VAT and gives the total with VAT. Extracting VAT does the opposite: it takes a total that already includes VAT and splits it into the net price and the VAT amount. For example, Rs 1,150 including 15% VAT is Rs 1,000 plus Rs 150 VAT.</p></details><details><summary>Can I convert currencies here?</summary><p>Not on this page. Use the Currency tool on the <a href="../conversion/">Conversion page</a>, where you enter the exchange rate yourself.</p></details></div>
+    <p class="guide-note"><strong>Estimates only.</strong> These tools are for learning and planning. They are not financial, tax or legal advice.</p>
+    </section>
+    <!-- GUIDE:END -->
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../shared/js/utils.js"></script>
+  <script src="../../shared/js/site-config.js"></script>
+  <script src="../../calculators/finance/finance.js"></script>
+  <script src="../../shared/js/layout.js"></script>
+  <script src="../../shared/js/calculator-engine.js"></script>
+  <script src="../../shared/js/disclaimer.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* privacy.css — Privacy Policy page only.
+   ===================================================================== */
+.privacy-hero p { color: var(--color-ink-muted); }
+
+/* Responsive: media (max-width: 720px) */
+@media (max-width: 720px) {
+  .privacy-hero { padding-inline: 1rem; }
+  .privacy-cards { padding-block: 2rem 1rem; }
+  .policy { padding-bottom: 3rem; }
+}
+.privacy-hero {
+  background: linear-gradient(130deg, var(--color-primary-soft), var(--color-surface) 68%);
+  padding-block: 4rem;
+}
+.privacy-hero .eyebrow { display: block; margin-bottom: 0.75rem; font-weight: 800; letter-spacing: 0.02em; }
+.privacy-hero h1 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); font-weight: 900; }
+.privacy-hero h1 span { color: var(--color-nav-active); }
+.privacy-hero .privacy-updated {
+  display: inline-block; margin-top: 1.5rem; padding: 0.25rem 0.8rem; font-size: 0.8rem;
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+.privacy-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-block: 3.5rem 1.5rem;
+}
+.privacy-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 1.25rem 1.35rem;
+}
+.privacy-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.privacy-card p { font-size: 0.92rem; }
+.policy { max-width: 760px; margin: 0 auto; padding-block: 1rem 5rem; }
+.policy section { padding-block: 1.75rem; border-top: 1px solid var(--color-border); }
+.policy section:first-child { border-top: 0; }
+.policy h2 { font-size: 1.3rem; margin-bottom: 0.6rem; }
+.policy p, .policy li { font-size: 0.98rem; line-height: 1.7; }
+.policy p + p, .policy p + ul { margin-top: 0.75rem; }
+.policy ul { list-style: disc; padding-left: 1.25rem; display: grid; gap: 0.5rem; margin-top: 0.75rem; }
+.policy li { color: var(--color-ink-muted); }
+.policy li::marker { color: var(--color-primary); }
+.policy strong { color: var(--color-ink); font-weight: 600; }
+.policy a { color: var(--color-primary-dark); text-decoration: underline; text-underline-offset: 3px; }
+.policy a:hover { color: var(--color-primary); }
+.policy code {
+  font-family: var(--font-mono); font-size: 0.86em; color: var(--color-ink);
+  background: var(--color-primary-soft); padding: 0.12em 0.4em; border-radius: var(--radius-sm);
+}
+
+/* Responsive: media (max-width: 960px) */
+@media (max-width: 960px) {
+  .privacy-cards { grid-template-columns: 1fr; }
+}
+
+/* Responsive: media (max-width: 720px) */
+@media (max-width: 720px) {
+  .privacy-hero { padding-block: 3rem; }
+}
+.privacy-card, .policy section {
+  transition: transform .22s ease, border-color .22s ease, outline-color .22s ease, box-shadow .22s ease, background-color .22s ease;
+}
+.privacy-card:hover, .policy section:hover {
+  transform: perspective(900px) translateY(-4px) rotateX(1deg) rotateY(-1deg);
+  border-color: var(--color-primary); outline: 1px solid var(--color-primary); outline-offset: 1px;
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--color-primary) 16%, transparent);
+}
+.policy section {
+  border: 1px solid transparent; border-top-color: var(--color-border);
+  border-radius: var(--radius-md); padding-inline: 1rem;
+}
+.policy section:first-child { border-top-color: transparent; }
+
+/* Reduced motion: media (prefers-reduced-motion: reduce) */
+@media (prefers-reduced-motion: reduce) {
+  .privacy-card, .policy section { transition-duration: .01ms !important; }
+  .privacy-card:hover, .policy section:hover { transform: none; }
+}

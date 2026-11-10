@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free unit converters for length, weight, temperature, volume, area, data storage and currency using an exchange rate you enter." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/calculators/conversion/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Unit Converters: Length, Weight, Temperature · Humpy Calculator" />
+  <meta property="og:description" content="Free unit converters for length, weight, temperature, volume, area, data storage and currency using an exchange rate you enter." />
+  <meta property="og:url" content="https://humpycalculator.com/calculators/conversion/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <title>Unit Converters: Length, Weight, Temperature · Humpy Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../shared/css/base.css" />
+  <link rel="stylesheet" href="../../shared/css/navbar.css" />
+  <link rel="stylesheet" href="../../shared/css/footer.css" />
+  <link rel="stylesheet" href="../../shared/css/calculator.css" />
+  <link rel="stylesheet" href="../../calculators/conversion/conversion.css" />
+</head>
+<body class="conversion-page">
+  <div id="site-header"></div>
+
+  <section class="calc-hero">
+    <div class="wrap-calculator-only conversion-hero-content">
+      <h1>Conversion Calculators</h1>
+      <p>Length, weight, temperature, currency and more.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- data-category must match the folder name and the key used in conversion/conversion.js -->
+    <div class="split-pane" id="calculator-app" data-category="conversion">
+      <!-- LEFT: operation + inputs (filled by calculator-engine.js) -->
+      <div class="pane pane-left">
+        <div class="field-group">
+          <label for="operation-select">Select operation</label>
+          <select id="operation-select"></select>
+        </div>
+        <div id="dynamic-fields"></div>
+        <button class="btn btn-primary btn-block" id="calculate-btn">Calculate Result</button>
+      </div>
+
+      <!-- RIGHT: step-by-step solution -->
+      <div class="pane pane-right">
+        <div class="pane-right-head">
+          <h3>Solution</h3>
+          <span class="badge" id="solution-badge">Ready</span>
+        </div>
+        <div id="solution-body">
+          <p class="solution-placeholder">Fill in the values on the left and press Calculate Result to see a step-by-step solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculation details, common formulas + related calculators -->
+    <div id="calculation-info" class="calculation-info-wrap" aria-live="polite"></div>
+
+    <div class="calc-lower">
+      <div>
+        <h2 class="section-title">Common formulas</h2>
+        <div class="formula-list" id="formula-list"></div>
+      </div>
+      <div>
+        <h2 class="section-title">Related calculators</h2>
+        <div class="related-list" id="related-list"></div>
+      </div>
+    </div>
+
+    <!-- GUIDE:START (written content; edit freely, keep it plain HTML) -->
+    <section class="calc-guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">About the Unit Converters</h2>
+    <div class="guide-intro"><p>Convert length, weight, temperature, volume, area, data storage and currency with one converter for each type. Pick the unit you have, pick the unit you want and the result appears with the factor used.</p><p>Length, weight, volume, area and data conversions use fixed standard factors. Currency is different, because exchange rates change all the time. The currency converter does not fetch live rates: you enter the rate you want to use.</p></div>
+    <h3>What you can calculate</h3>
+    <ul class="guide-tags"><li>Length</li><li>Weight / Mass</li><li>Temperature</li><li>Currency</li><li>Volume</li><li>Data Storage</li><li>Area</li></ul>
+    <h3>Worked examples</h3>
+    <div class="guide-examples"><article class="guide-example"><h4>Length</h4><p>5 kilometres to miles</p><p class="guide-answer">Answer: 3.1069 miles</p></article><article class="guide-example"><h4>Temperature</h4><p>37 °C to °F</p><p>°F = °C × 9/5 + 32</p><p class="guide-answer">Answer: 98.6 °F</p></article><article class="guide-example"><h4>Currency (example rate)</h4><p>Amount: 100 USD</p><p>Rate you enter: 280 PKR per 1 USD</p><p class="guide-answer">Answer: 28,000 PKR</p></article></div>
+    <h3>Tips for accurate results</h3>
+    <ul class="guide-tips"><li>For currency, enter the rate as units of the target currency per 1 unit of the source currency, taken from your bank, an exchange or an official source.</li><li>The Weight converter includes kilograms, grams, milligrams, pounds, ounces, stones, metric tons and US tons.</li><li>The Area converter includes square metres, square feet, acres, hectares, square kilometres and square miles. For example, 1 acre is about 4,046.86 square metres.</li></ul>
+    <h3>Frequently asked questions</h3>
+    <div class="guide-faq"><details><summary>Why doesn’t the currency converter show live rates?</summary><p>Live rates would need the page to contact an outside service. This site keeps every calculation inside your browser and sends nothing out, so you type in a rate instead.</p></details><details><summary>How accurate are the unit conversions?</summary><p>They use standard conversion factors and show up to four decimal places, so the results are accurate for everyday, school and general use.</p></details><details><summary>Is 1 GB equal to 1,000 MB or 1,024 MB?</summary><p>The Data Storage converter uses the decimal (SI) system, so 1 GB = 1,000 MB. Some operating systems report binary sizes (1 GiB = 1,024 MiB), so the numbers you see on your device can differ slightly.</p></details><details><summary>How do I convert Celsius to Fahrenheit or kelvin?</summary><p>°F = °C × 9/5 + 32 and K = °C + 273.15. The Temperature converter does this for any pair of Celsius, Fahrenheit and kelvin.</p></details><details><summary>Which units are available?</summary><p>Length, weight, volume, area, data storage (bits to yottabytes and beyond), temperature (°C, °F, K) and nine currencies: USD, EUR, GBP, PKR, INR, AED, SAR, JPY and CNY.</p></details></div>
+    <p class="guide-note">Currency results depend on the rate you enter and are not live. For real transactions, check the rate with your bank or exchange.</p>
+    </section>
+    <!-- GUIDE:END -->
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../shared/js/utils.js"></script>
+  <script src="../../shared/js/site-config.js"></script>
+  <script src="../../calculators/conversion/conversion.js"></script>
+  <script src="../../shared/js/layout.js"></script>
+  <script src="../../shared/js/calculator-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# =====================================================================
+# .htaccess — for Apache / LiteSpeed hosting (cPanel / shared hosting). Ignored by Netlify, Vercel, Cloudflare Pages.
+# Does four things: force HTTPS, send old URLs to the new ones, add security headers, hide non-site files.
+# =====================================================================
+
+Options -Indexes
+
+# 1. Always use HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Old addresses -> new addresses
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^(about|privacy|formulas)\.html$ /$1/ [R=301,L]
+RewriteRule ^calculators/([a-z]+)\.html$ /calculators/$1/ [R=301,L]
+
+# 3. Security headers (needs mod_headers, which most hosts enable)
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+</IfModule>
+
+# 4. Never serve developer files (docs, editor settings, README, hidden files) — except /.well-known/
+RedirectMatch 404 ^/(docs|\.vscode)(/|$)
+ErrorDocument 404 /404.html
+RedirectMatch 404 ^/README\.md$
+<FilesMatch "^\.(?!well-known)">
+  Require all denied
+</FilesMatch>

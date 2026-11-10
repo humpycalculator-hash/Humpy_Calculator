@@ -1,0 +1,172 @@
+/* base.css — loaded by EVERY page.
+   Reset, design tokens (colours, fonts, shadows), colour themes + dark mode, typography, buttons, banners.
+   To add a colour theme: copy a :root[data-theme="…"] block below, rename it, and add it to SITE.themes in shared/js/site-config.js.
+   ===================================================================== */
+
+/* ---------- Reset & page defaults ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body); color: var(--color-ink);
+  background: linear-gradient(130deg, var(--color-primary-soft), var(--color-surface) 68%);
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4, p { margin: 0; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+/* ---------- Design tokens ---------- */
+:root {
+  --color-nav-text: #434655; --color-hero-bg: #f8f8f8; --color-ink: #12172b;
+  --color-ink-muted: #5b5f73; --color-surface: #ffffff; --color-border: #e4e6ec;
+  --color-primary: #004ac6; --color-primary-dark: #003a9e; --color-primary-soft: #e8efff;
+  --color-nav-active: #004ac6; --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif; --font-mono: "Inter", sans-serif; --radius-sm: 6px;
+  --radius-md: 10px; --radius-lg: 16px; --radius-pill: 999px; --content-width: 1180px;
+  --shadow-card: 0 1px 2px rgba(18, 23, 43, 0.06);
+  --shadow-pop: 0 18px 40px -16px rgba(18, 23, 43, 0.22), 0 4px 12px -4px rgba(18, 23, 43, 0.08);
+}
+:root, :root[data-theme="blue"] {
+  --color-primary: #004ac6; --color-primary-dark: #003a9e; --color-primary-soft: #e8efff;
+  --color-nav-active: #004ac6;
+}
+
+/* ---------- Colour themes ---------- */
+:root[data-theme="dark-green"] {
+  --color-primary: #166534; --color-primary-dark: #14532d; --color-primary-soft: #dcfce7;
+  --color-nav-active: #166534;
+}
+:root[data-theme="cosmic-orange"] {
+  --color-primary: #c2410c; --color-primary-dark: #9a3412; --color-primary-soft: #ffedd5;
+  --color-nav-active: #c2410c;
+}
+:root[data-theme="burgundy"] {
+  --color-primary: #800020; --color-primary-dark: #5c0017; --color-primary-soft: #f7e6ea;
+  --color-nav-active: #800020;
+}
+:root[data-theme="yellow"] {
+  --color-primary: #b78600; --color-primary-dark: #d9a000; --color-primary-soft: #fff6d6;
+  --color-nav-active: #b78600;
+}
+:root[data-theme="plum"] {
+  --color-primary: #36013f; --color-primary-dark: #22002a; --color-primary-soft: #f3e8f5;
+  --color-nav-active: #36013f;
+}
+
+/* ---------- Dark mode ---------- */
+:root[data-mode="dark"] {
+  --color-surface: #0f172a; --color-hero-bg: #111827; --color-ink: #f8fafc;
+  --color-ink-muted: #cbd5e1; --color-nav-text: #e2e8f0; --color-border: #334155;
+  --color-primary-soft: color-mix(in srgb, var(--color-primary) 24%, #0f172a);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-pop: 0 18px 40px -16px rgba(0, 0, 0, 0.5), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Smooth colour change when the theme switches ---------- */
+.hero, .about-hero, .btn-primary {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Reduced motion — Reset & page defaults: media (prefers-reduced-motion: reduce) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.2; }
+h3 { font-size: clamp(1.15rem, 1.6vw, 1.375rem); line-height: 1.3; }
+p { color: var(--color-ink-muted); }
+.eyebrow { color: var(--color-nav-text); font-size: 0.9rem; }
+
+/* ---------- Page container ---------- */
+.wrap { width: 100%; max-width: var(--content-width); margin-inline: auto; padding-inline: 1.5rem; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem 1.6rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.98rem;
+  border: 1px solid transparent;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-secondary { background: transparent; color: var(--color-ink); border-color: var(--color-border); }
+.btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* ---------- Hero banner (Home + About) ---------- */
+.hero {
+  background-color: color-mix( in srgb, var(--color-nav-active) 10%, transparent );
+  position: relative; overflow: hidden; padding-block: 6rem 5rem;
+}
+.hero-content { position: relative; max-width: 800px; margin-inline: auto; text-align: center; }
+.hero-content h1 {
+  margin-bottom: 1.1rem; font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em;
+}
+.hero-content p { font-size: clamp(1rem, 1.3vw, 1.1rem); max-width: 696px; margin-inline: auto; }
+
+/* ---------- Title banner (Formulas, Privacy) ---------- */
+.about-hero {
+  background-color: color-mix( in srgb, var(--color-nav-active) 10%, transparent );
+  padding-block: 4.5rem; text-align: center;
+}
+.about-hero .wrap { max-width: 720px; }
+.about-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); }
+.about-hero p { font-size: 1.05rem; margin-top: 1rem; }
+
+/* Responsive — Hero banner (Home + About): media (max-width: 600px) */
+@media (max-width: 600px) {
+  .hero { padding-block: 4rem 3rem; }
+}
+
+/* Responsive — Page container: media (max-width: 400px) */
+@media (max-width: 400px) {
+  .wrap { padding-inline: 1rem; }
+}
+
+/* ---------- Buttons ---------- */
+.btn:hover { transform: translateY(-2px); }
+
+/* Reduced motion — Reset & page defaults: media (prefers-reduced-motion: reduce) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important; transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Design tokens ---------- */
+:root {
+  --color-on-primary: #ffffff; --sel-bg: var(--color-primary); --sel-fg: var(--color-on-primary);
+  --sel-bar: color-mix(in srgb, var(--color-primary) 55%, #ffffff);
+}
+
+/* ---------- Colour themes ---------- */
+:root[data-theme="yellow"] { --color-on-primary: #1a1300; }
+
+/* ---------- Dark mode ---------- */
+:root[data-mode="dark"] {
+  --color-on-primary: #ffffff; --sel-bg: color-mix(in srgb, var(--color-primary) 55%, #0f172a);
+  --sel-fg: #ffffff; --sel-bar: color-mix(in srgb, var(--color-primary) 40%, #ffffff);
+}
+
+/* ---------- Title banner (Formulas, Privacy) ---------- */
+.about-hero p { color: var(--color-ink-muted); }
+
+/* Responsive — Title banner (Formulas, Privacy): media (max-width: 720px) */
+@media (max-width: 720px) {
+  .about-hero { padding-inline: 1rem; }
+}

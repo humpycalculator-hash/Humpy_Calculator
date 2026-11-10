@@ -1,0 +1,6 @@
+# _redirects — Netlify / Cloudflare Pages. Sends the OLD page addresses (before the folder restructure) to the new ones.
+/index.html                 /                    301
+/about.html                 /about/              301
+/privacy.html               /privacy/            301
+/formulas.html              /formulas/           301
+/calculators/:name.html     /calculators/:name/  301

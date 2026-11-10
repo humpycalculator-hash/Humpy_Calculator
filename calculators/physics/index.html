@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free physics calculators for speed, force, energy, momentum, Ohm’s law, electrical power, free fall and projectile motion, with formulas and steps." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/calculators/physics/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Physics Calculators: Force, Energy, Ohm’s Law · Humpy Calculator" />
+  <meta property="og:description" content="Free physics calculators for speed, force, energy, momentum, Ohm’s law, electrical power, free fall and projectile motion, with formulas and steps." />
+  <meta property="og:url" content="https://humpycalculator.com/calculators/physics/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <title>Physics Calculators: Force, Energy, Ohm’s Law · Humpy Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../shared/css/base.css" />
+  <link rel="stylesheet" href="../../shared/css/navbar.css" />
+  <link rel="stylesheet" href="../../shared/css/footer.css" />
+  <link rel="stylesheet" href="../../shared/css/calculator.css" />
+  <link rel="stylesheet" href="../../calculators/physics/physics.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="calc-hero">
+    <div class="wrap">
+      <h1>Physics Calculators</h1>
+      <p>Classic mechanics and circuit formulas.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- data-category must match the folder name and the key used in physics/physics.js -->
+    <div class="split-pane" id="calculator-app" data-category="physics">
+      <!-- LEFT: operation + inputs (filled by calculator-engine.js) -->
+      <div class="pane pane-left">
+        <div class="field-group">
+          <label for="operation-select">Select operation</label>
+          <select id="operation-select"></select>
+        </div>
+        <div id="dynamic-fields"></div>
+        <button class="btn btn-primary btn-block" id="calculate-btn">Calculate Result</button>
+      </div>
+
+      <!-- RIGHT: step-by-step solution -->
+      <div class="pane pane-right">
+        <div class="pane-right-head">
+          <h3>Solution</h3>
+          <span class="badge" id="solution-badge">Ready</span>
+        </div>
+        <div id="solution-body">
+          <p class="solution-placeholder">Fill in the values on the left and press Calculate Result to see a step-by-step solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculation details, common formulas + related calculators -->
+    <div id="calculation-info" class="calculation-info-wrap" aria-live="polite"></div>
+
+    <div class="calc-lower">
+      <div>
+        <h2 class="section-title">Common formulas</h2>
+        <div class="formula-list" id="formula-list"></div>
+      </div>
+      <div>
+        <h2 class="section-title">Related calculators</h2>
+        <div class="related-list" id="related-list"></div>
+      </div>
+    </div>
+
+    <!-- GUIDE:START (written content; edit freely, keep it plain HTML) -->
+    <section class="calc-guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">About the Physics calculators</h2>
+    <div class="guide-intro"><p>These calculators cover motion, force, energy, electricity, waves and gravity using standard school formulas. Each one shows the formula, the substitution and the final answer with its unit.</p><p>Use SI units (metres, kilograms, seconds) unless a calculator gives you a unit menu. Mixing units, such as grams with kilograms, is the most common reason for a wrong answer.</p></div>
+    <h3>What you can calculate</h3>
+    <ul class="guide-tags"><li>Speed / Velocity</li><li>Force</li><li>Kinetic Energy</li><li>Potential Energy</li><li>Work Done</li><li>Acceleration</li><li>Momentum</li><li>Density</li><li>Pressure</li><li>Mechanical Power</li><li>Ohm’s Law</li><li>Electrical Power</li><li>Frequency</li><li>Wave Speed</li><li>Gravitational Force</li><li>Free Fall</li><li>Projectile Motion</li></ul>
+    <h3>Worked examples</h3>
+    <div class="guide-examples"><article class="guide-example"><h4>Force</h4><p>Mass: 10 kg</p><p>Acceleration: 3 m/s²</p><p>F = m × a = 10 × 3</p><p class="guide-answer">Answer: 30 N</p></article><article class="guide-example"><h4>Kinetic energy</h4><p>Mass: 2 kg</p><p>Speed: 3 m/s</p><p>KE = ½ × m × v² = ½ × 2 × 9</p><p class="guide-answer">Answer: 9 J</p></article><article class="guide-example"><h4>Ohm’s law</h4><p>Current: 2 A, resistance: 6 Ω</p><p>Leave voltage blank</p><p>V = I × R = 2 × 6</p><p class="guide-answer">Answer: 12 V</p></article></div>
+    <h3>Tips for accurate results</h3>
+    <ul class="guide-tips"><li>In Ohm’s Law, leave exactly one box blank and fill the other two. The calculator finds the missing value.</li><li>The Speed calculator lets you choose distance and time units and converts them for you. For example, 150 km in 2 hours is about 20.83 m/s (75 km/h).</li><li>Angles for Work Done and Projectile Motion are entered in degrees, not radians.</li></ul>
+    <h3>Frequently asked questions</h3>
+    <div class="guide-faq"><details><summary>Which units do the physics calculators use?</summary><p>Mostly SI units: metres, kilograms, seconds, newtons, joules, volts, amperes and ohms. Where a calculator offers a unit menu, such as distance and time for speed, choose the unit you have and it converts for you.</p></details><details><summary>What value of gravity is used?</summary><p>Standard gravity, 9.80665 m/s², is used by Free Fall and as the default in Potential Energy. In Potential Energy you can type a different value of g, for example for another planet.</p></details><details><summary>Does the speed calculator give average speed?</summary><p>Yes. It uses v = d ÷ t, so the answer is the average speed over the whole distance and time you enter, shown in m/s.</p></details><details><summary>Why does Ohm’s Law ask me to leave one box blank?</summary><p>Ohm’s Law links three values: voltage, current and resistance. You need to know two to find the third, so the calculator solves for whichever box you leave empty.</p></details><details><summary>How are the results rounded?</summary><p>Answers are shown to up to four decimal places. Very large or very small numbers are shown in scientific notation, such as 1.5e12.</p></details></div>
+    <p class="guide-note">Results are for learning and quick checks. For exams, lab reports or engineering work, follow your instructor’s rules for units and significant figures.</p>
+    </section>
+    <!-- GUIDE:END -->
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../shared/js/utils.js"></script>
+  <script src="../../shared/js/site-config.js"></script>
+  <script src="../../calculators/physics/physics.js"></script>
+  <script src="../../shared/js/layout.js"></script>
+  <script src="../../shared/js/calculator-engine.js"></script>
+</body>
+</html>

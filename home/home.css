@@ -1,0 +1,225 @@
+/* home.css — Home page only (index.html): hero symbols, category cards and the "More to explore" carousel.
+   ===================================================================== */
+
+/* ---------- Calculator grid section ---------- */
+.wrap-calculators {
+  width: 100%; max-width: var(--content-width); margin-inline: auto; padding-inline: 1.5rem;
+  display: flex; flex-direction: column; align-items: center;
+}
+.section { padding-block: 4.5rem; }
+.section-head {
+  max-width: 640px; margin: 0 auto 2.5rem; text-align: center; font-family: var(--font-display);
+}
+.section-head h2 {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ---------- Hero extras ---------- */
+.hero-glyphs {
+  position: absolute; inset: 0; pointer-events: none; animation: drift 14s ease-in-out infinite;
+}
+.hero-glyphs span {
+  position: absolute; font-family: var(--font-mono); color: var(--color-primary); opacity: 0.1;
+}
+
+/* Animation: drift */
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.slogan-II { color: var(--color-nav-active); }
+.hero-actions {
+  margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 0.9rem;
+}
+
+/* ---------- Category cards ---------- */
+.grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; width: 100%; }
+.calc-card {
+  border: 1px solid var(--color-border); padding: 1.5rem; border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card); background: var(--color-surface);
+  transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; display: flex;
+  flex-direction: column; gap: 0.5rem;
+}
+.calc-card:hover {
+  border-color: var(--color-primary); transform: translateY(-3px); box-shadow: var(--shadow-pop);
+}
+.calc-card .glyph {
+  display: flex; align-items: center; gap: 0.9rem; padding: 0.25rem 0 0.75rem;
+  border-radius: var(--radius-md); color: var(--color-primary); margin-bottom: 0.6rem;
+}
+.calc-card .glyph img {
+  width: 38px; height: 68px; object-fit: contain; flex-shrink: 0; display: block;
+  max-width: 48px !important;
+}
+.glyph-heading {
+  font-family: var(--font-display); padding: 4px 10px; border-radius: 4px;
+  background-color: #e8f1ff; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+}
+.glyph-heading p { color: #2563eb; margin: 0; }
+.calc-card h3 { margin: 0.25rem 0 0.4rem; }
+.calc-card p { font-size: 0.92rem; margin: 0; }
+
+/* ---------- More to explore — carousel ---------- */
+.explore {
+  position: relative; max-width: 1100px; margin: 0 auto; padding: 3rem 1rem 2.5rem;
+  background: transparent; text-align: center; --tile-size: clamp(104px, 21vw, 216px);
+  --tile-center: var(--color-primary);
+  --tile-near: color-mix(in srgb, var(--color-primary) 82%, #000);
+  --tile-far: color-mix(in srgb, var(--color-primary) 65%, #000);
+}
+.explore-title {
+  margin: 0 0 2.5rem; font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.4rem);
+  font-weight: 700; letter-spacing: -0.01em; color: var(--color-ink); text-align: center;
+}
+.explore .carousel { position: relative; max-width: 860px; margin: 0 auto; }
+.explore .stage {
+  position: relative; height: calc(var(--tile-size, 200px) * 1.3); touch-action: pan-y;
+  user-select: none;
+}
+.explore .tile {
+  --k: 0; --s: 1; --bg: var(--tile-center); position: absolute; top: 50%; left: 50%;
+  width: var(--tile-size); height: var(--tile-size); padding: 0; border: 0; border-radius: 14%;
+  background: var(--bg); color: #fff; display: grid; place-items: center; cursor: pointer;
+  transform: translate(calc(-50% + var(--tile-size) * var(--k)), -50%) scale(var(--s));
+  box-shadow: 0 18px 34px -14px rgba(18, 23, 43, 0.5);
+  transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), background-color 0.4s, opacity 0.3s;
+  opacity: 0; pointer-events: none; -webkit-tap-highlight-color: transparent;
+}
+.explore .tile svg {
+  width: 42%; height: 42%; fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: round;
+  stroke-linejoin: round; pointer-events: none;
+}
+.explore .tile svg .solid { fill: currentColor; stroke: none; }
+.explore .tile[data-offset="0"] {
+  --k: 0; --s: 1; --bg: var(--tile-center); z-index: 5; opacity: 1; pointer-events: auto;
+  cursor: default; box-shadow: 0 26px 44px -16px rgba(18, 23, 43, 0.6);
+}
+.explore .tile[data-offset="-1"] {
+  --k: -0.78; --s: 0.88; --bg: var(--tile-near); z-index: 4; opacity: 1; pointer-events: auto;
+}
+.explore .tile[data-offset="1"] {
+  --k: 0.78; --s: 0.88; --bg: var(--tile-near); z-index: 4; opacity: 1; pointer-events: auto;
+}
+.explore .tile[data-offset="-2"] {
+  --k: -1.42; --s: 0.74; --bg: var(--tile-far); z-index: 3; opacity: 1; pointer-events: auto;
+}
+.explore .tile[data-offset="2"] {
+  --k: 1.42; --s: 0.74; --bg: var(--tile-far); z-index: 3; opacity: 1; pointer-events: auto;
+}
+.explore .arrow {
+  position: absolute; top: 50%; z-index: 10; width: 48px; height: 64px; padding: 0; border: 0;
+  background: none; transform: translateY(-50%); cursor: pointer; display: grid;
+  place-items: center; animation: none !important; transition: color 0.24s ease, opacity 0.24s ease;
+}
+.explore .arrow:hover, .explore .arrow:focus, .explore .arrow:active {
+  animation: none !important; transform: translateY(-50%) !important;
+}
+.explore .arrow-next { right: 0; }
+.explore .arrow-prev { left: 0; }
+.explore .arrow svg {
+  width: 26px; height: 44px; fill: none; stroke: var(--color-primary); stroke-width: 4;
+  stroke-linecap: round; stroke-linejoin: round; opacity: 0.35;
+  transition: opacity 0.2s, transform 0.2s, stroke 0.4s;
+}
+.explore .arrow:hover svg { opacity: 1; }
+.explore .arrow-prev:hover svg { transform: translateX(-3px); }
+.explore .arrow-next:hover svg { transform: translateX(3px); }
+.explore .caption {
+  max-width: 520px; margin: 2.5rem auto 0; min-height: 9rem; transition: opacity 0.18s ease;
+}
+.explore .caption.is-changing { opacity: 0; }
+.explore .caption-title {
+  margin: 0 0 0.6rem; font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  font-weight: 600; color: var(--color-primary); transition: color 0.4s;
+}
+.explore .caption-text { margin: 0 0 1.1rem; color: var(--color-ink-muted); line-height: 1.6; }
+.explore .caption-link {
+  display: inline-block; padding: 0.65rem 1.4rem; border-radius: var(--radius-pill);
+  background: var(--color-primary); color: #fff; font-weight: 500; text-decoration: none;
+  transition: background-color 0.3s;
+}
+.explore .caption-link:hover { background: var(--color-primary-dark); }
+
+/* Responsive — Category cards: media (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .grid-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Responsive — Category cards: media (max-width: 600px) */
+@media (max-width: 600px) {
+  .grid-cards { grid-template-columns: 1fr; }
+  .section { padding-block: 3rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .explore { padding: 2rem 0.75rem 2rem; }
+  .explore .tile[data-offset="-2"], .explore .tile[data-offset="2"] { opacity: 0; pointer-events: none; }
+  .explore .arrow { width: 40px; }
+}
+
+/* Responsive — Calculator grid section: media (max-width: 400px) */
+@media (max-width: 400px) {
+  .wrap-calculators { padding-inline: 1rem; }
+}
+
+/* ---------- More to explore — carousel ---------- */
+.explore .arrow {
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+}
+.explore .arrow:hover { transform: translateY(-2px); }
+#caption { transition: opacity 0.22s ease, transform 0.22s ease; }
+#caption.is-changing { opacity: 0.25; transform: translateY(6px) scale(0.985); }
+.explore .tile:focus-visible, .explore .arrow:focus-visible {
+  outline: 2px solid var(--color-primary); outline-offset: 5px;
+}
+.explore .stage.is-sliding .tile[data-offset="0"] {
+  animation: humpy-card-arrive 0.38s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.explore .tile:hover { filter: brightness(1.06); }
+.explore .tile[data-offset="-1"]:hover,
+.explore .tile[data-offset="1"]:hover,
+.explore .tile[data-offset="-2"]:hover,
+.explore .tile[data-offset="2"]:hover {
+  box-shadow: 0 25px 42px -16px color-mix(in srgb, var(--color-primary) 55%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 75%, white);
+}
+
+/* ---------- Category cards ---------- */
+.calc-card .glyph img { margin-left: auto; }
+.calc-card .glyph-heading { flex: 0 0 auto; }
+
+/* ---------- More to explore — carousel ---------- */
+.explore .tile .health-tile-image {
+  width: 54%; height: 66%; object-fit: contain; border-radius: 0;
+  filter: brightness(0) invert(1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+}
+.explore .tile[data-offset="0"] {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 50%, transparent); outline-offset: 3px;
+}
+.explore .tile:active {
+  transform: translate(calc(-50% + var(--tile-size) * var(--k)), -50%) scale(calc(var(--s) * 0.97));
+}
+.explore .arrow svg { transition: opacity 0.2s ease; transform: none !important; }
+.explore .arrow-prev:hover svg, .explore .arrow-next:hover svg { transform: none !important; }
+.explore .arrow { animation: none !important; }
+
+/* ---------- Hero extras ---------- */
+.hero-glyphs .g1 { top: 12%; left: 8%; font-size: 3.2rem; }
+.hero-glyphs .g2 { top: 20%; right: 10%; font-size: 2.4rem; }
+.hero-glyphs .g3 { top: 65%; left: 14%; font-size: 2.8rem; }
+.hero-glyphs .g4 { bottom: 10%; right: 16%; font-size: 3rem; }
+.hero-glyphs .g5 { top: 45%; right: 26%; font-size: 1.8rem; }
+.hero-glyphs .g6 { bottom: 18%; left: 30%; font-size: 1.6rem; }
+
+/* ---------- Category cards ---------- */
+.glyph-heading.is-physics { background-color: #CFFAFE; }
+.glyph-heading.is-physics p { color: #0E7490; }
+.glyph-heading.is-chemistry { background-color: #D1FAE5; }
+.glyph-heading.is-chemistry p { color: #047857; }
+.glyph-heading.is-finance { background-color: #DCFCE7; }
+.glyph-heading.is-finance p { color: #15803D; }
+.glyph-heading.is-health { background-color: #FAD1D2; }
+.glyph-heading.is-health p { color: #FF0D12; }
+.glyph-heading.is-conversion { background-color: #FFEDD5; }
+.glyph-heading.is-conversion p { color: #C2410C; }

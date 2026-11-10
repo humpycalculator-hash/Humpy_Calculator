@@ -1,0 +1,168 @@
+/* footer.css — loaded by EVERY page. The footer: brand, developers, contact, back-to-top button.
+   The markup is built by shared/js/layout.js.
+   ===================================================================== */
+
+/* ---------- Footer shell ---------- */
+.site-footer {
+  transition: background-color 0.4s ease; --footer-heading: var(--color-ink);
+  --footer-text: var(--color-ink-muted); --footer-link: var(--color-nav-text);
+  --footer-card: var(--color-surface); --footer-border: var(--color-border);
+  --footer-glow: color-mix(in srgb, var(--color-primary) 28%, transparent);
+  --footer-accent: color-mix(in srgb, var(--color-primary) 60%, #ffffff); position: relative;
+  overflow: hidden; width: 100%;
+  background-color: color-mix( in srgb, var(--color-primary) 10%, var(--color-surface) );
+  border-top: 1px solid var(--footer-border); color: var(--footer-link);
+}
+
+/* ---------- Floating symbols ---------- */
+.footer-glyphs {
+  position: absolute; inset: 0; pointer-events: none;
+  animation: footer-drift 14s ease-in-out infinite;
+}
+.footer-glyphs span {
+  position: absolute; font-family: var(--font-mono); color: var(--color-primary); opacity: 0.1;
+  line-height: 1;
+}
+.footer-glyphs .g1 { top: 46%; left: 25%; font-size: 44px; }
+.footer-glyphs .g2 { top: 10%; right: 5%; font-size: 42px; }
+.footer-glyphs .g3 { bottom: 24%; left: 38%; font-size: 34px; }
+.footer-glyphs .g4 { bottom: 20%; right: 26%; font-size: 36px; }
+.footer-glyphs .g5 { top: 8%; left: 30%; font-size: 30px; }
+
+/* Animation: footer-drift */
+@keyframes footer-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- Columns ---------- */
+.footer-container {
+  position: relative; max-width: var(--content-width); margin: 0 auto; padding: 28px 28px 24px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px;
+}
+.footer-heading {
+  margin-bottom: 12px; color: var(--footer-heading); font-family: var(--font-display);
+  font-size: 15px; font-weight: 600;
+}
+
+/* ---------- Brand ---------- */
+.footer-brand-col { max-width: 260px; }
+.footer-brand {
+  display: inline-flex; align-items: center; gap: 10px; color: var(--color-primary);
+  font-family: var(--font-display); font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
+}
+.brand-logo {
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  border-radius: 22%; background: var(--color-primary); box-shadow: 0 2px 6px var(--footer-glow);
+  color: #ffffff; font-size: 18px; font-weight: 700;
+}
+.footer-description { margin-top: 10px; color: var(--footer-text); font-size: 13px; line-height: 1.6; }
+
+/* ---------- Developers ---------- */
+.developers-col { text-align: center; }
+.developers-col .footer-heading::after {
+  content: ""; display: block; width: 36px; height: 3px; margin: 8px auto 0; border-radius: 10px;
+  background: linear-gradient( 90deg, var(--color-primary), var(--footer-accent) );
+}
+.developers { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.developer-chip {
+  display: flex; align-items: center; gap: 9px; padding: 5px 18px 5px 5px;
+  border: 1px solid var(--footer-border); border-radius: 30px; background: var(--footer-card);
+  color: var(--footer-heading); font-size: 14px; font-weight: 600; cursor: default;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.developer-chip:hover {
+  transform: translateY(-3px); border-color: var(--color-primary);
+  box-shadow: 0 8px 20px var(--footer-glow);
+}
+.developer-avatar {
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--color-primary); color: #ffffff; font-size: 13px;
+  font-weight: 700;
+}
+
+/* ---------- Contact + social links ---------- */
+.contact-col { min-width: 250px; }
+.contact-mail {
+  display: inline-flex; align-items: center; gap: 10px; color: var(--footer-link); font-size: 13px;
+  transition: color 0.25s ease; word-break: break-all;
+}
+.contact-mail:hover { color: var(--color-primary); }
+.mail-icon {
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; background: var(--color-primary); flex-shrink: 0;
+}
+.mail-icon svg {
+  width: 17px; height: 17px; fill: none; stroke: #ffffff; stroke-width: 1.9; stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.social-links { margin-top: 14px; display: flex; gap: 10px; }
+.social-link {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--footer-border); border-radius: 50%; background: var(--footer-card);
+  color: var(--footer-link);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.social-link svg { width: 18px; height: 18px; fill: currentColor; }
+.social-link:hover {
+  transform: translateY(-3px); background: var(--color-primary); border-color: var(--color-primary);
+  color: #ffffff; box-shadow: 0 6px 16px var(--footer-glow);
+}
+
+/* ---------- Bottom bar ---------- */
+.footer-bottom {
+  position: relative; max-width: var(--content-width); margin: 0 auto; padding: 12px 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+}
+.copyright { color: var(--footer-text); font-size: 13px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; }
+.footer-link { color: var(--footer-text); font-size: 13px; transition: color 0.25s ease; }
+.footer-link:hover { color: var(--color-primary); text-decoration: underline; }
+
+/* ---------- Back-to-top button ---------- */
+.back-to-top {
+  min-height: 34px; padding: 0 14px; display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--footer-border); border-radius: 24px; background: var(--footer-card);
+  color: var(--footer-link); font-family: inherit; font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.back-to-top:hover {
+  color: #ffffff; background: var(--color-primary); border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+.back-to-top svg {
+  width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---------- Footer shell ---------- */
+.site-footer a:focus-visible, .back-to-top:focus-visible {
+  outline: 2px solid var(--color-primary); outline-offset: 3px;
+}
+
+/* Responsive — Columns: media (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .footer-container { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
+  .footer-brand-col { max-width: 320px; }
+  .contact-col { min-width: 0; }
+  .contact-mail { justify-content: center; }
+  .social-links { justify-content: center; }
+}
+
+/* Responsive — Columns: media (max-width: 600px) */
+@media (max-width: 600px) {
+  .footer-container { padding: 24px 18px 20px; }
+  .footer-bottom { padding: 14px 18px; flex-direction: column; gap: 10px; text-align: center; }
+}
+
+/* ---------- Brand ---------- */
+.brand-logo { overflow: hidden; padding: 5px; }
+.brand-logo svg { display: block; width: 100%; height: 100%; }
+.brand-logo .logo-shape { fill: #fff; }
+
+/* ---------- Back-to-top button ---------- */
+.back-to-top { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); }
+.back-to-top.is-visible { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
+.back-to-top.is-visible:hover { transform: translateY(-2px); }

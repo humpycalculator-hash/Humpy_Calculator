@@ -1,0 +1,15 @@
+/* conversion.css — Conversion page only: hero tweaks.
+   ===================================================================== */
+.wrap-calculator-only {
+  width: 100%; max-width: var(--content-width); margin-inline: auto; padding-inline: 1.5rem;
+}
+
+/* Responsive: media (max-width: 400px) */
+@media (max-width: 400px) {
+  .wrap-calculator-only { padding-inline: 1rem; }
+}
+.conversion-hero-content { margin-inline: auto; text-align: left; }
+.conversion-hero-content h1, .conversion-hero-content p { text-align: left; }
+.conversion-page .calc-hero h1, .conversion-page .calc-hero p, .conversion-page .calc-lower h2 {
+  text-align: left;
+}

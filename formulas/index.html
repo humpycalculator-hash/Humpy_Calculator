@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Every formula behind the Humpy Calculator tools in one reference page: math, finance, physics, chemistry, conversion and health." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/formulas/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Formulas &amp; Definitions · Humpy Calculator" />
+  <meta property="og:description" content="Every formula behind the Humpy Calculator tools in one reference page: math, finance, physics, chemistry, conversion and health." />
+  <meta property="og:url" content="https://humpycalculator.com/formulas/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <title>Formulas &amp; Definitions · Humpy Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../shared/css/base.css" />
+  <link rel="stylesheet" href="../shared/css/navbar.css" />
+  <link rel="stylesheet" href="../shared/css/footer.css" />
+  <link rel="stylesheet" href="../formulas/formulas.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="about-hero">
+    <div class="wrap">
+      <h1>Formulas &amp; definitions</h1>
+      <p>The exact formula behind every calculator on the site, grouped by category.</p>
+    </div>
+  </section>
+
+  <!-- Filled by formulas.js from every calculators/<name>/<name>.js file -->
+  <div class="wrap" id="formulas-list"></div>
+  <div class="page-spacer"></div>
+
+  <div id="site-footer"></div>
+
+  <!-- Load order: helpers, then every category's data, then layout, then this page's logic -->
+  <script src="../shared/js/utils.js"></script>
+  <script src="../shared/js/site-config.js"></script>
+  <script src="../calculators/math/rational.js"></script>
+  <script src="../calculators/math/gpa.js"></script>
+  <script src="../calculators/math/math.js"></script>
+  <script src="../calculators/finance/finance.js"></script>
+  <script src="../calculators/physics/physics.js"></script>
+  <script src="../calculators/chemistry/chemistry.js"></script>
+  <script src="../calculators/conversion/conversion.js"></script>
+  <script src="../calculators/health/health.js"></script>
+  <script src="../shared/js/layout.js"></script>
+  <script src="../formulas/formulas.js"></script>
+</body>
+</html>

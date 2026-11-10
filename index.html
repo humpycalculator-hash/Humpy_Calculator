@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online calculators for math, finance, physics, chemistry, health and unit conversion. Every answer comes with the formula and a step-by-step solution." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Humpy Calculator · Free Online Calculators with Steps" />
+  <meta property="og:description" content="Free online calculators for math, finance, physics, chemistry, health and unit conversion. Every answer comes with the formula and a step-by-step solution." />
+  <meta property="og:url" content="https://humpycalculator.com/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <title>Humpy Calculator · Free Online Calculators with Steps</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="shared/css/base.css" />
+  <link rel="stylesheet" href="shared/css/navbar.css" />
+  <link rel="stylesheet" href="shared/css/footer.css" />
+  <link rel="stylesheet" href="home/home.css" />
+</head>
+<body>
+  <!-- Navbar is injected here by layout.js -->
+  <div id="site-header"></div>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-glyphs" aria-hidden="true">
+      <span class="g1">π</span>
+      <span class="g2">Σ</span>
+      <span class="g3">√</span>
+      <span class="g4">÷</span>
+      <span class="g5">×</span>
+      <span class="g6">∞</span>
+    </div>
+    <div class="wrap">
+      <div class="hero-content">
+        <h1>Compute Anything<br /><span class="slogan-II">Understand Everything</span></h1>
+        <p>The high-performance educational platform designed for precise calculations, clear<br>
+definitions, and comprehensive formulas.</p>
+        <div class="hero-actions">
+          <a href="calculators/math/" class="btn btn-primary">Start Calculating</a>
+          <a href="formulas/" class="btn btn-secondary">View Formulas &amp; Definitions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Calculator grid ===== -->
+  <section class="section">
+    <div class="wrap-calculators">
+      <div class="section-head">
+        <h2>Find the Calculator You Need</h2>
+      </div>
+      
+      <div class="grid-cards">
+        <a href="calculators/math/" class="calc-card">
+          <div class="glyph">
+            <div class="glyph-heading">
+                <p>Mathematics</p>
+            </div>
+            <img src="assets/summation-icon.svg" alt="summation-icon"></div><h3>Math</h3>
+          <p>Percentages, roots, exponents, GPA, algebra and more.</p>
+        </a>
+        <a href="calculators/physics/" class="calc-card">
+          <div class="glyph">
+             <div class="glyph-heading is-physics">
+                <p>Physics</p>
+            </div>
+            <img src="assets/physics-icon.svg" alt="physics-icon"></div><h3>Physics</h3>
+          <p>Speed, force, energy, free fall and Ohm's law.</p>
+        </a>
+        <a href="calculators/chemistry/" class="calc-card">
+          <div class="glyph">
+             <div class="glyph-heading is-chemistry">
+                <p>Chemistry</p>
+            </div>
+            <img src="assets/chemistry-icon.svg" alt="chemistry-icon"></div><h3>Chemistry</h3>
+          <p>Molar mass, molarity, pH and the ideal gas law.</p>
+        </a>
+        <a href="calculators/finance/" class="calc-card">
+          <div class="glyph">
+             <div class="glyph-heading is-finance">
+                <p>Finance</p>
+            </div>
+            <img src="assets/finance-icon.svg" alt="finance-icon"></div><h3>Finance</h3>
+          <p>Loan EMI, compound interest, tax, discounts and more.</p>
+        </a>
+        <a href="calculators/health/" class="calc-card">
+          <div class="glyph">
+             <div class="glyph-heading is-health">
+                <p>Health</p>
+            </div>
+            <img src="assets/health-icon.png" alt="Health icon"></div><h3>Health</h3>
+          <p>BMI, calorie needs, ideal weight and heart-rate zones.</p>
+        </a>
+        <a href="calculators/conversion/" class="calc-card">
+          <div class="glyph">
+             <div class="glyph-heading is-conversion">
+                <p>conversion</p>
+            </div>
+            <img src="assets/conversion-icon.svg" alt="conversion-icon"></div><h3>Unit Converters</h3>
+          <p>Length, weight, temperature, currency and data size.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== More to Explore: accessible interactive fan carousel ===== -->
+  <section class="explore" aria-labelledby="explore-heading">
+    <h2 class="explore-title" id="explore-heading">More to Explore</h2>
+    <div class="carousel" id="carousel" tabindex="0" aria-label="Explore calculator categories">
+      <div class="stage" id="stage" aria-live="polite"></div>
+      <button class="arrow arrow-prev" id="prev" type="button" aria-label="Previous category">
+        <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M20 3 4 20l16 17"/></svg>
+      </button>
+      <button class="arrow arrow-next" id="next" type="button" aria-label="Next category">
+        <svg viewBox="0 0 24 40" aria-hidden="true"><path d="m4 3 16 17L4 37"/></svg>
+      </button>
+    </div>
+    <div class="caption" id="caption" aria-live="polite">
+      <h3 class="caption-title" id="caption-title"></h3>
+      <p class="caption-text" id="caption-text"></p>
+      <a class="caption-link" id="caption-link" href="calculators/math/"></a>
+    </div>
+  </section>
+
+  <!-- Footer is injected here by layout.js -->
+  <div id="site-footer"></div>
+
+  <script src="shared/js/site-config.js"></script>
+  <script src="shared/js/layout.js"></script>
+  <script src="home/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+/* calculator.css — shared by ALL six calculator pages (calculators/<name>/index.html).
+   The two-column layout, input fields, theme-aware dropdown, solution box, details, formula + related lists.
+   Page-specific extras live next to each page (e.g. calculators/math/math.css).
+   ===================================================================== */
+
+/* ---------- Smooth colour change when the theme switches ---------- */
+.calc-hero, .pane, .pane-right, .solution-step, .solution-result, .conversion-details {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---------- Page title banner ---------- */
+.wrap-calculators-only {
+  width: 100%; max-width: var(--content-width); margin-inline: auto; padding-inline: 1.5rem;
+}
+.btn-block { width: 100%; }
+.calc-hero {
+  background: linear-gradient(130deg, var(--color-primary-soft), var(--color-surface) 68%);
+  border-bottom: 1px solid var(--color-border); padding-block: 2.75rem;
+  font-family: var(--font-display);
+}
+.calc-hero .eyebrow { margin-bottom: 0.35rem; display: block; }
+.calc-hero h1 { font-family: var(--font-display); font-weight: 700; }
+.calc-hero p { max-width: 720px; }
+
+/* ---------- Two-column layout ---------- */
+.split-pane {
+  display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 1.5rem; padding-block: 3rem;
+  align-items: start;
+}
+.pane { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem; }
+.pane-left { background: var(--color-surface); }
+.pane-right {
+  background: var(--color-primary-soft); border-color: transparent; min-height: 360px;
+  position: relative;
+}
+
+/* ---------- Input fields ---------- */
+.field-group { margin-bottom: 1.25rem; }
+.field-group label {
+  display: block; font-size: 0.88rem; font-weight: 600; color: var(--color-ink);
+  margin-bottom: 0.4rem;
+}
+.field-group select, .field-group input {
+  width: 100%; padding: 0.75rem 0.9rem; border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm); font-size: 0.98rem; font-family: var(--font-body);
+  color: var(--color-ink); background: var(--color-surface);
+}
+.field-group select:focus, .field-group input:focus {
+  border-color: var(--color-primary); outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+.field-group input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+.field-group input[type="number"]::-webkit-outer-spin-button,
+.field-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; margin: 0;
+}
+.field-hint { font-size: 0.82rem; color: var(--color-ink-muted); margin-top: 0.3rem; }
+.badge {
+  display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600;
+  background: var(--color-border); color: var(--color-ink-muted);
+}
+.badge::before { content: ""; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: currentColor; }
+.badge.is-solved { background: var(--color-primary); color: #fff; }
+.badge.is-error { background: #dc2626; color: #fff; }
+
+/* ---------- Two-column layout ---------- */
+.pane-right-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin-bottom: 1.25rem; flex-wrap: wrap;
+}
+
+/* ---------- Solution box — messages ---------- */
+.solution-placeholder { color: var(--color-ink-muted); font-size: 0.95rem; }
+.solution-error { color: #b91c1c; font-weight: 500; }
+:root[data-mode="dark"] .solution-error { color: #fca5a5; }
+
+/* ---------- Input fields ---------- */
+#dynamic-fields input, .field-group input {
+  font-family: var(--font-body), Arial, sans-serif; font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ---------- Solution box ---------- */
+.solution-steps { display: grid; gap: 0.75rem; }
+.solution-step {
+  background: var(--color-surface); border-radius: var(--radius-md); padding: 0.9rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+}
+.solution-step h4 {
+  margin: 0 0 0.35rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em;
+  text-transform: uppercase; color: var(--color-primary); font-family: var(--font-body);
+}
+.solution-step .expr {
+  margin: 0; font-family: var(--font-mono); font-size: 0.92rem; color: var(--color-ink);
+  word-break: break-word; line-height: 1.55;
+}
+.solution-result {
+  margin-top: 1.25rem; padding: 1.1rem 1.25rem; background: var(--color-ink);
+  border-radius: var(--radius-md); color: #fff;
+}
+.solution-result .label { font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 0.3rem; }
+.solution-result .value {
+  font-family: var(--font-body), Arial, sans-serif; font-variant-numeric: lining-nums tabular-nums;
+  font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 600; line-height: 1.3;
+  word-break: break-word;
+}
+:root[data-mode="dark"] .solution-result {
+  background: color-mix(in srgb, var(--color-primary) 55%, #0f172a);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 80%, transparent);
+}
+
+/* ---------- Calculation details ---------- */
+.calculation-info-wrap { margin: 0.85rem 0 1.75rem; }
+.conversion-details {
+  display: flex; flex-wrap: wrap; gap: 0.45rem 0.6rem; align-items: stretch; margin: 0; padding: 0;
+  border: 0; border-radius: 0; background: transparent; font-size: 0.72rem;
+}
+.conversion-details h4 { display: none; }
+.conversion-detail-row {
+  display: flex; flex-direction: column; justify-content: center; gap: 0.12rem; min-width: 115px;
+  max-width: 260px; padding: 0.45rem 0.65rem; border: 1px solid var(--color-border);
+  border-radius: 9px; background: var(--color-surface);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  font-size: 0.7rem;
+}
+.conversion-detail-row span { color: var(--color-ink-muted); }
+.conversion-detail-row strong { color: var(--color-ink); font-weight: 600; overflow-wrap: anywhere; }
+.conversion-detail-row:hover, .conversion-detail-row:focus-within {
+  transform: translateY(-3px) perspective(500px) rotateX(2deg); border-color: var(--color-primary);
+  box-shadow: 0 7px 16px rgba(15, 23, 42, 0.12);
+}
+
+/* ---------- Common formulas + related calculators ---------- */
+.calc-lower { padding-block: 1rem 4.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+.calc-lower h2 {
+  font-family: var(--font-display); font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 700;
+  line-height: 1.2; margin-bottom: 1.25rem;
+}
+.formula-list { display: grid; gap: 0.65rem; }
+.formula-chip {
+  font-family: var(--font-body); display: flex; justify-content: space-between; gap: 1rem;
+  padding: 0.8rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+}
+.formula-chip .expr { font-family: var(--font-body); color: var(--color-primary-dark); text-align: right; }
+.related-list { display: grid; gap: 0.6rem; }
+.related-list a {
+  display: block; padding: 0.8rem 1rem; border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-ink);
+  transition: border-color 150ms ease, color 150ms ease;
+}
+.related-list a:hover { border-color: var(--color-primary); color: var(--color-primary-dark); }
+
+/* Responsive — Two-column layout: media (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .split-pane { grid-template-columns: 1fr; }
+  .calc-lower { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Responsive — Two-column layout: media (max-width: 600px) */
+@media (max-width: 600px) {
+  .split-pane { padding-block: 2rem; }
+  .pane { padding: 1.25rem; }
+  .conversion-details { position: static; margin: 1rem 0 0; max-width: 100%; }
+  .pane-right:has(.conversion-details) { padding-bottom: 2rem; }
+}
+
+/* Responsive — Page title banner: media (max-width: 400px) */
+@media (max-width: 400px) {
+  .wrap-calculators-only { padding-inline: 1rem; }
+}
+
+/* ---------- Input fields ---------- */
+.field-group select, .field-group input, .field-group textarea {
+  color: var(--color-ink); background-color: var(--color-surface);
+  border-color: var(--color-border); accent-color: var(--color-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.field-group select:focus, .field-group input:focus, .field-group textarea:focus {
+  border-color: var(--color-primary);
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent); outline-offset: 1px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+.field-group select option { color: var(--color-ink); background: var(--color-surface); }
+.field-group select:hover, .related-list a:hover, .formula-chip:hover, .pane:hover {
+  border-color: var(--color-primary);
+}
+
+/* ---------- Common formulas + related calculators ---------- */
+.related-list a, .formula-chip, .pane {
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+}
+.related-list a:hover, .formula-chip:hover {
+  transform: translateY(-3px) perspective(650px) rotateX(2deg);
+  box-shadow: 0 9px 22px color-mix(in srgb, var(--color-primary) 18%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+
+/* ---------- Calculation details ---------- */
+.conversion-details::before {
+  content: "Conversion Details"; flex-basis: 100%; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.04em; color: var(--color-ink-muted); text-transform: uppercase;
+  content: none !important;
+}
+.conversion-detail-row {
+  min-width: 90px; max-width: 190px; padding: 0.35rem 0.5rem; font-size: 0.66rem;
+  border-radius: 8px;
+}
+.conversion-detail-row:hover {
+  transform: translateY(-3px) perspective(600px) rotateX(3deg);
+  outline: 1px solid var(--color-primary);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+/* ---------- Input fields ---------- */
+#dynamic-fields input, .field-group input, .solution-result .value {
+  font-family: "Inter", sans-serif !important; font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Animation: humpy-card-arrive */
+@keyframes humpy-card-arrive {
+  0% { filter: blur(1px); opacity: 0.65; }
+  65% { filter: blur(0); }
+  100% { opacity: 1; }
+}
+
+/* ---------- Calculation details ---------- */
+.details-heading {
+  flex-basis: 100%; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--color-ink-muted); text-transform: uppercase;
+}
+
+/* ---------- Input fields ---------- */
+.field-group select, #operation-select, select { accent-color: var(--color-primary); }
+.field-group select:focus, #operation-select:focus, select:focus {
+  outline: 2px solid var(--color-primary); outline-offset: 2px;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 16%, transparent);
+  outline-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
+}
+.field-group select option, #operation-select option {
+  color: var(--color-ink); background: var(--color-surface);
+}
+.field-group select option:checked, #operation-select option:checked {
+  background: linear-gradient(var(--sel-bg), var(--sel-bg)); color: var(--sel-fg);
+}
+
+/* ---------- Theme-aware dropdown ---------- */
+.cselect { position: relative; }
+.cselect-native { display: none !important; }
+.cselect-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  padding: 0.75rem 0.9rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  font-size: 0.98rem; font-family: var(--font-body); text-align: left; color: var(--color-ink);
+  background: var(--color-surface); transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cselect-btn:hover { border-color: var(--color-primary); }
+.cselect-btn:focus-visible, .cselect.is-open .cselect-btn {
+  border-color: var(--color-primary); outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+.cselect-caret { flex-shrink: 0; transition: transform 0.2s ease; }
+.cselect.is-open .cselect-caret { transform: rotate(180deg); }
+.cselect-list {
+  display: none; position: absolute; z-index: 50; left: 0; right: 0; top: calc(100% + 0.4rem);
+  margin: 0; padding: 0.4rem; list-style: none; max-height: min(340px, 60vh); overflow-y: auto;
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-pop); outline: none;
+}
+.cselect-list.is-open { display: block; }
+.cselect-list li {
+  padding: 0.6rem 0.75rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.35;
+  color: var(--color-ink); cursor: pointer;
+}
+.cselect-list li.is-active { background: var(--color-primary-soft); }
+.cselect-list li[aria-selected="true"] {
+  background: var(--sel-bg); color: var(--sel-fg); font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--sel-bar);
+}
+
+/* ---------- Input fields ---------- */
+.field-group select option:checked, .field-group select option:hover, select option:checked {
+  background: var(--sel-bg); color: var(--sel-fg);
+}
+
+/* ---------- Theme-aware dropdown ---------- */
+.cselect-list li.is-active:not([aria-selected="true"]) {
+  background: var(--color-primary-soft); color: var(--color-ink);
+}
+.cselect-list li[aria-selected="true"] { background: var(--sel-bg); color: var(--sel-fg); }
+
+/* ---------- Solution box ---------- */
+.solution-result-secondary {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center;
+  gap: .35rem .65rem; margin-top: .8rem; padding-top: .7rem;
+  border-top: 1px solid var(--color-border); color: rgba(255, 255, 255, .78); font-size: .88rem;
+}
+.solution-result-secondary strong {
+  color: #fff; font-family: var(--font-mono); font-size: .98rem; font-weight: 650;
+}
+
+/* ---------- Input fields ---------- */
+.field-section-heading {
+  grid-column: 1 / -1; margin: .55rem 0 -.2rem; padding-top: .7rem;
+  border-top: 1px solid var(--color-border); color: var(--color-ink); font-size: .92rem;
+  font-weight: 700;
+}
+
+/* ---------- Headings ---------- */
+.section-title { margin-bottom: 1.25rem; }
+
+/* ---------- Guide: the written content under each calculator (about, examples, tips, FAQ) ---------- */
+.calc-guide { max-width: 960px; margin: 0 auto; padding-block: 0.5rem 4.5rem; }
+.calc-guide > h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+.guide-intro { display: grid; gap: 0.85rem; max-width: 760px; }
+.guide-intro p { color: var(--color-ink-muted); line-height: 1.75; }
+.calc-guide h3 { font-size: 1.1rem; margin: 2.25rem 0 0.9rem; }
+
+.guide-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.guide-tags li {
+  padding: 0.3rem 0.8rem; font-size: 0.85rem; font-weight: 600; color: var(--color-primary-dark);
+  background: var(--color-primary-soft); border-radius: var(--radius-pill);
+}
+
+.guide-examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.guide-example {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 1.1rem 1.2rem;
+}
+.guide-example h4 { margin: 0 0 0.5rem; font-size: 0.98rem; }
+.guide-example p { font-size: 0.9rem; line-height: 1.6; color: var(--color-ink-muted); }
+.guide-example p + p { margin-top: 0.4rem; }
+.guide-example .guide-answer { color: var(--color-ink); font-weight: 700; }
+
+.guide-tips { list-style: disc; padding-left: 1.25rem; display: grid; gap: 0.55rem; max-width: 760px; }
+.guide-tips li { color: var(--color-ink-muted); line-height: 1.7; }
+.guide-tips li::marker { color: var(--color-primary); }
+
+.guide-faq { display: grid; gap: 0.6rem; max-width: 760px; }
+.guide-faq details {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card);
+}
+.guide-faq summary {
+  cursor: pointer; list-style: none; padding: 0.85rem 2.6rem 0.85rem 1.1rem; position: relative;
+  font-weight: 600; font-size: 0.96rem;
+}
+.guide-faq summary::-webkit-details-marker { display: none; }
+.guide-faq summary::after {
+  content: "+"; position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%);
+  font-size: 1.25rem; font-weight: 500; color: var(--color-primary);
+}
+.guide-faq details[open] summary::after { content: "\2212"; }
+.guide-faq details[open] { border-color: var(--color-primary); }
+.guide-faq details p { padding: 0 1.1rem 1rem; color: var(--color-ink-muted); line-height: 1.7; font-size: 0.94rem; }
+.guide-faq a, .guide-note a { color: var(--color-primary-dark); text-decoration: underline; text-underline-offset: 3px; }
+
+.guide-note {
+  margin-top: 2rem; max-width: 760px; padding: 0.9rem 1.1rem; font-size: 0.9rem; line-height: 1.65;
+  color: var(--color-ink-muted); background: var(--color-primary-soft);
+  border-left: 4px solid var(--color-primary); border-radius: var(--radius-md);
+}
+.guide-note strong { color: var(--color-ink); }
+
+/* Responsive: media (max-width: 900px) */
+@media (max-width: 900px) {
+  .guide-examples { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .calc-guide > h2 { font-size: 1.35rem; }
+}
+
+/* ---------- Hover: stable, no shaking (calculator pages only) ----------
+   Why it used to shake: the old hover lifted the card upwards (translateY) and tilted it. When the
+   pointer was near the bottom edge, the card moved away from the pointer, the hover switched off, the
+   card dropped back, the hover switched on again, and so on. Scaling up is safe: the grown box always
+   covers the original box, so the hover can't flicker. Keep this rule when you add new hover styles:
+   use scale / colour / shadow, never translate or rotate on :hover. */
+.related-list a, .formula-chip, .conversion-detail-row,
+.guide-example, .guide-tags li, .guide-tips li, .guide-faq details, .guide-note {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease,
+              background-color 0.22s ease, color 0.22s ease;
+}
+.related-list a:hover, .formula-chip:hover,
+.conversion-detail-row:hover, .conversion-detail-row:focus-within {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-primary) 16%, transparent);
+  outline: 1px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+.pane .btn:hover { transform: scale(1.02); } /* Calculate button: was lifted 2px (same shake) */
+
+/* Hover for the written guide under each calculator */
+.guide-example:hover, .guide-faq details:hover, .guide-note:hover {
+  transform: scale(1.012); border-color: var(--color-primary);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 16%, transparent);
+}
+.guide-note:hover { box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 12%, transparent); }
+.guide-tags li:hover { background: var(--color-primary); color: #fff; transform: scale(1.06); }
+.guide-tips li:hover { color: var(--color-ink); }
+.guide-faq details[open]:hover { transform: none; } /* an open answer stays still while you read it */
+.guide-faq summary:hover { color: var(--color-primary-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .related-list a:hover, .formula-chip:hover, .conversion-detail-row:hover, .pane .btn:hover,
+  .guide-example:hover, .guide-faq details:hover, .guide-note:hover, .guide-tags li:hover { transform: none; }
+}
+
+/* ---------- Disclaimer pop-up (Health and Finance pages; script: shared/js/disclaimer.js) ---------- */
+html.has-disclaimer { overflow: hidden; }
+.disclaimer-backdrop {
+  position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center;
+  padding: 1rem; background: rgba(18, 23, 43, 0.5); backdrop-filter: blur(3px);
+  animation: disclaimer-fade 0.2s ease;
+}
+.disclaimer-dialog {
+  width: 100%; max-width: 420px; padding: 2rem 1.75rem 1.5rem; text-align: center;
+  background: var(--color-surface); color: var(--color-ink);
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-pop);
+  animation: disclaimer-pop 0.24s ease;
+}
+.disclaimer-icon {
+  width: 56px; height: 56px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--color-primary-soft); color: var(--color-primary);
+}
+.disclaimer-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.disclaimer-dialog h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.6rem; }
+.disclaimer-dialog p { color: var(--color-ink-muted); font-size: 0.95rem; line-height: 1.65; }
+.disclaimer-dialog .btn { margin-top: 1.4rem; width: 100%; }
+.disclaimer-dialog .btn:hover { transform: none; }
+.disclaimer-link {
+  display: inline-block; margin-top: 0.9rem; font-size: 0.82rem; color: var(--color-ink-muted);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.disclaimer-link:hover { color: var(--color-primary-dark); }
+@keyframes disclaimer-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes disclaimer-pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .disclaimer-backdrop, .disclaimer-dialog { animation: none; }
+}

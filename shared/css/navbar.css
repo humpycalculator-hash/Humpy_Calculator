@@ -1,0 +1,202 @@
+/* navbar.css — loaded by EVERY page. The top bar: logo, links, "Calculators" dropdown, theme picker, mobile menu.
+   The markup is built by shared/js/layout.js.
+   ===================================================================== */
+
+/* ---------- Bar ---------- */
+.navbar, .theme-dropdown, .nav-dropdown {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.navbar {
+  border-bottom: 1px solid var(--color-border); background: var(--color-surface); position: sticky;
+  top: 0; z-index: 50;
+}
+.navbar .wrap {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem;
+  padding-block: 0.5rem;
+}
+
+/* ---------- Logo ---------- */
+.nav-logo {
+  display: flex; align-items: center; gap: 0.65rem; font-family: var(--font-display);
+  font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--color-nav-active);
+  flex-shrink: 0;
+}
+.nav-logo .mark {
+  width: 2.25rem; height: 2.25rem; flex-shrink: 0; display: grid; place-items: center;
+  overflow: hidden; border-radius: 22%; background-color: var(--color-nav-active);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--color-primary) 30%, transparent);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.nav-logo:hover .mark {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--color-primary) 38%, transparent);
+}
+.nav-logo .mark svg { width: 100%; height: 100%; display: block; }
+.nav-logo .mark .logo-shape { fill: #ffffff; }
+.nav-logo-text { white-space: nowrap; }
+
+/* ---------- Links ---------- */
+.nav-center { display: flex; align-items: center; gap: 2rem; }
+.nav-link {
+  display: inline-flex; align-items: center; gap: 0.35rem; background: transparent; border: 0;
+  padding: 0.4rem 0; margin: 0; font-family: var(--font-body); font-weight: 400; font-size: 16px;
+  line-height: 1.6; color: var(--color-nav-text); transition: color 160ms ease;
+}
+.nav-link:hover, .nav-link:focus-visible, .nav-link.is-active, .nav-link[aria-expanded="true"] {
+  color: var(--color-nav-active); font-weight: 700;
+}
+.nav-text { position: relative; display: inline-block; }
+.nav-text::after {
+  content: attr(data-text); display: block; height: 0; overflow: hidden; visibility: hidden;
+  font-weight: 700; pointer-events: none;
+}
+
+/* ---------- "Calculators" dropdown ---------- */
+.nav-caret { flex-shrink: 0; opacity: 0.7; transition: transform 200ms ease, opacity 200ms ease; }
+.nav-item:hover .nav-caret,
+.nav-item.is-open .nav-caret,
+.theme-btn[aria-expanded="true"] .nav-caret,
+.theme-picker.is-open .nav-caret {
+  transform: rotate(180deg); opacity: 1;
+}
+.nav-item { position: relative; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 0.6rem); left: 50%; z-index: 60; min-width: 232px;
+  display: grid; gap: 0.15rem; padding: 0.5rem; background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: 16px; box-shadow: var(--shadow-pop);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateX(-50%) translateY(-8px) scale(0.98); transform-origin: top center;
+  transition: opacity 180ms ease, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 180ms ease;
+}
+.nav-item:hover .nav-dropdown, .nav-item:focus-within .nav-dropdown, .nav-item.is-open .nav-dropdown {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+.nav-dropdown a {
+  display: flex; align-items: center; gap: 0.65rem; padding: 0.6rem 0.75rem; border-radius: 10px;
+  color: var(--color-nav-text); font-size: 0.95rem; font-weight: 400; line-height: 1.35;
+  transition: background-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+.nav-dropdown a::before {
+  content: ""; width: 6px; height: 6px; flex-shrink: 0; border-radius: 50%;
+  background: currentColor; opacity: 0.35; transition: opacity 140ms ease, transform 140ms ease;
+}
+.nav-dropdown a:hover, .nav-dropdown a:focus-visible {
+  background: var(--color-primary-soft); color: var(--color-nav-active); transform: translateX(2px);
+}
+.nav-dropdown a:hover::before, .nav-dropdown a:focus-visible::before { opacity: 1; transform: scale(1.15); }
+
+/* ---------- Theme picker ---------- */
+.nav-right { display: flex; align-items: center; gap: 0.65rem; }
+.theme-picker { position: relative; }
+.theme-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.95rem;
+  background: transparent; border: 0; border-radius: var(--radius-pill);
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; line-height: 1.2;
+  color: var(--color-nav-text);
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+.theme-btn:hover, .theme-btn:focus-visible {
+  background: var(--color-primary-soft); color: var(--color-nav-active);
+  box-shadow: 0 4px 12px -6px color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+.theme-btn:active { transform: translateY(1px); }
+.theme-btn[aria-expanded="true"] { background: var(--color-primary-soft); color: var(--color-nav-active); }
+.theme-dot {
+  width: 0.85rem; height: 0.85rem; flex-shrink: 0; border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 3px var(--color-border);
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+.theme-dropdown {
+  position: absolute; top: calc(100% + 0.6rem); right: 0; z-index: 60; min-width: 300px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; padding: 0.65rem;
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 16px;
+  box-shadow: var(--shadow-pop); opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateY(-8px) scale(0.98); transform-origin: top right;
+  transition: opacity 180ms ease, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 180ms ease;
+}
+.theme-picker.is-open .theme-dropdown {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1);
+}
+.theme-option {
+  display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+  padding: 0.7rem 0.5rem 0.6rem; background: transparent; border: 1px solid transparent;
+  border-radius: 12px; font-family: var(--font-body); font-size: 0.76rem; font-weight: 500;
+  line-height: 1.2; color: var(--color-nav-text); text-align: center;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+.theme-option:hover, .theme-option:focus-visible {
+  background: var(--color-hero-bg); border-color: var(--color-border);
+  color: var(--color-nav-active);
+}
+.theme-option .swatch {
+  width: 1.55rem; height: 1.55rem; flex-shrink: 0; border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 3px var(--color-border);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+.theme-option:hover .swatch { transform: scale(1.1); }
+.theme-option.is-active {
+  background: var(--color-hero-bg); border-color: var(--color-border);
+  color: var(--color-nav-active); font-weight: 700;
+}
+.theme-option.is-active .swatch {
+  box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-primary);
+}
+.theme-mode-option {
+  display: none; grid-column: 1 / -1; flex-direction: row; justify-content: center;
+  margin-top: 0.35rem; padding: 0.65rem 1rem; background: var(--color-primary-soft);
+  border-color: transparent; font-size: 0.85rem; font-weight: 600; color: var(--color-primary);
+}
+.theme-mode-option:hover, .theme-mode-option:focus-visible { background: var(--color-primary); color: #fff; }
+
+/* ---------- Mobile menu button ---------- */
+.nav-toggle { display: none; }
+
+/* Responsive — Links: media (max-width: 800px) */
+@media (max-width: 800px) {
+  .nav-center { display: none; }
+  .nav-toggle {
+    display: inline-flex; align-items: center; justify-content: center; width: 2.5rem;
+    height: 2.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+    background: none; font-size: 1.2rem; color: var(--color-nav-text);
+  }
+  .navbar.is-open .nav-center {
+    display: flex; flex-direction: column; align-items: stretch; gap: 0.25rem; position: absolute;
+    top: 4.5rem; left: 0; right: 0; background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border); padding: 1rem 1.5rem 1.5rem;
+    box-shadow: 0 20px 34px -24px rgba(18, 23, 43, 0.35);
+  }
+  .navbar.is-open .nav-link { padding: 0.6rem 0; }
+  .navbar.is-open .nav-item { width: 100%; }
+  .navbar.is-open .nav-link-btn { width: 100%; justify-content: space-between; }
+  .navbar .nav-item:hover .nav-dropdown { opacity: 0; visibility: hidden; pointer-events: none; }
+  .navbar .nav-item:hover .nav-caret { transform: none; }
+  .navbar .nav-item.is-open .nav-caret { transform: rotate(180deg); }
+  .navbar.is-open .nav-dropdown {
+    position: static; display: none; min-width: 0; padding: 0 0 0 0.5rem; background: transparent;
+    border: none; border-radius: 0; box-shadow: none; opacity: 0; visibility: hidden;
+    pointer-events: none; transform: none;
+  }
+  .navbar.is-open .nav-item.is-open .nav-dropdown {
+    display: grid; opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+  }
+  .theme-dropdown { right: 0; left: auto; min-width: min(320px, calc(100vw - 2rem)); }
+  .theme-btn-label { display: none; }
+  .theme-btn { padding: 0.5rem 0.65rem; }
+}
+
+/* Responsive — Bar: media (max-width: 400px) */
+@media (max-width: 400px) {
+  .navbar .wrap { padding-inline: 0.9rem; }
+}
+
+/* ---------- "Calculators" dropdown ---------- */
+.nav-dropdown a.is-current {
+  background: var(--sel-bg); color: var(--sel-fg); font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--sel-bar);
+}
+.nav-dropdown a.is-current::before { opacity: 1; }
+.nav-dropdown a.is-current:hover, .nav-dropdown a.is-current:focus-visible {
+  background: var(--sel-bg); color: var(--sel-fg);
+}

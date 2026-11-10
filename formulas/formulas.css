@@ -1,0 +1,23 @@
+/* formulas.css — Formulas & definitions page only.
+   ===================================================================== */
+.formulas-group { padding-block: 2rem; border-top: 1px solid var(--color-border); }
+.formulas-group:first-of-type { border-top: none; }
+.formula-row {
+  display: grid; grid-template-columns: 1.1fr 1fr 1.4fr; gap: 1.5rem; padding-block: 1rem;
+  border-top: 1px solid var(--color-border); align-items: baseline;
+}
+.formula-row:first-child { border-top: none; }
+.formula-row .name { font-weight: 600; }
+.formula-row .expr {
+  font-family: var(--font-mono); color: var(--color-primary-dark); word-break: break-word;
+}
+.formula-row .def { font-size: 0.92rem; color: var(--color-ink-muted); }
+
+/* Responsive: media (max-width: 600px) */
+@media (max-width: 600px) {
+  .formula-row { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+.formulas-group h2 { margin-bottom: 0.5rem; }
+.formulas-group > p { margin-bottom: 1.25rem; }
+.formulas-group > p a { color: var(--color-primary-dark); }
+.page-spacer { height: 3rem; }

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free chemistry calculators for molar mass, molarity, pH and the ideal gas law. See the formula and every step of the working." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/calculators/chemistry/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Chemistry Calculators: Molar Mass, pH &amp; More · Humpy Calculator" />
+  <meta property="og:description" content="Free chemistry calculators for molar mass, molarity, pH and the ideal gas law. See the formula and every step of the working." />
+  <meta property="og:url" content="https://humpycalculator.com/calculators/chemistry/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <title>Chemistry Calculators: Molar Mass, pH &amp; More · Humpy Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../shared/css/base.css" />
+  <link rel="stylesheet" href="../../shared/css/navbar.css" />
+  <link rel="stylesheet" href="../../shared/css/footer.css" />
+  <link rel="stylesheet" href="../../shared/css/calculator.css" />
+  <link rel="stylesheet" href="../../calculators/chemistry/chemistry.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="calc-hero">
+    <div class="wrap">
+      <h1>Chemistry Calculators</h1>
+      <p>Molar mass, concentration, pH and gas laws.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- data-category must match the folder name and the key used in chemistry/chemistry.js -->
+    <div class="split-pane" id="calculator-app" data-category="chemistry">
+      <!-- LEFT: operation + inputs (filled by calculator-engine.js) -->
+      <div class="pane pane-left">
+        <div class="field-group">
+          <label for="operation-select">Select operation</label>
+          <select id="operation-select"></select>
+        </div>
+        <div id="dynamic-fields"></div>
+        <button class="btn btn-primary btn-block" id="calculate-btn">Calculate Result</button>
+      </div>
+
+      <!-- RIGHT: step-by-step solution -->
+      <div class="pane pane-right">
+        <div class="pane-right-head">
+          <h3>Solution</h3>
+          <span class="badge" id="solution-badge">Ready</span>
+        </div>
+        <div id="solution-body">
+          <p class="solution-placeholder">Fill in the values on the left and press Calculate Result to see a step-by-step solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculation details, common formulas + related calculators -->
+    <div id="calculation-info" class="calculation-info-wrap" aria-live="polite"></div>
+
+    <div class="calc-lower">
+      <div>
+        <h2 class="section-title">Common formulas</h2>
+        <div class="formula-list" id="formula-list"></div>
+      </div>
+      <div>
+        <h2 class="section-title">Related calculators</h2>
+        <div class="related-list" id="related-list"></div>
+      </div>
+    </div>
+
+    <!-- GUIDE:START (written content; edit freely, keep it plain HTML) -->
+    <section class="calc-guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">About the Chemistry calculators</h2>
+    <div class="guide-intro"><p>These tools cover four common jobs in chemistry homework and lab preparation: molar mass from a formula, molarity, pH and hydrogen-ion concentration, and the ideal gas law. Each result comes with the formula and the working.</p><p>Always check your teacher’s or lab manual’s rules for units and significant figures. These calculators are meant to help you learn the method and check your own work.</p></div>
+    <h3>What you can calculate</h3>
+    <ul class="guide-tags"><li>Molar Mass</li><li>Molarity</li><li>pH Calculator</li><li>Ideal Gas Law</li></ul>
+    <h3>Worked examples</h3>
+    <div class="guide-examples"><article class="guide-example"><h4>Molar mass of water</h4><p>Formula: H2O</p><p>2 × 1.008 + 15.999</p><p class="guide-answer">Answer: 18.015 g/mol</p></article><article class="guide-example"><h4>Molarity</h4><p>Moles of solute: 0.5 mol</p><p>Volume of solution: 2 L</p><p>M = 0.5 ÷ 2</p><p class="guide-answer">Answer: 0.25 mol/L</p></article><article class="guide-example"><h4>pH</h4><p>Hydrogen-ion concentration: 0.001 mol/L</p><p>pH = −log₁₀(0.001)</p><p class="guide-answer">Answer: pH 3</p></article></div>
+    <h3>Tips for accurate results</h3>
+    <ul class="guide-tips"><li>Write molar-mass formulas in simple form, such as H2O, NaCl or C6H12O6. Capital letters matter: Co is cobalt, CO is carbon monoxide. Parentheses are not accepted.</li><li>Molarity needs the volume in litres. To convert millilitres, divide by 1000.</li><li>In the Ideal Gas Law you can enter temperature in kelvin or degrees Celsius, and choose the pressure and volume units you have.</li></ul>
+    <h3>Frequently asked questions</h3>
+    <div class="guide-faq"><details><summary>How do I write a chemical formula?</summary><p>Use element symbols with numbers after them, like H2O or C6H12O6, with no spaces. The first letter of a symbol is capital and the second, if there is one, is lowercase. Formulas with parentheses, such as Ca(OH)2, are not accepted, so write every atom out, for example CaO2H2.</p></details><details><summary>What does the pH number mean?</summary><p>pH = −log₁₀[H⁺]. At 25 °C, a pH below 7 is acidic, 7 is neutral and above 7 is basic. Each whole pH step is a tenfold change in hydrogen-ion concentration.</p></details><details><summary>Which gas constant does the Ideal Gas Law use?</summary><p>R = 8.314462618 Pa·m³·mol⁻¹·K⁻¹. Your inputs are converted to pascals, cubic metres and kelvin before the calculation, and the answer is shown in practical units as well.</p></details><details><summary>How much volume does one mole of gas take?</summary><p>At 273.15 K and 1 atm, one mole of an ideal gas takes up about 22.4 litres. You can check this by choosing Volume as the unknown with n = 1, T = 273.15 K and P = 1 atm.</p></details><details><summary>Where do the atomic masses come from?</summary><p>They are standard atomic masses built into the calculator, and the molar mass is shown in g/mol with the steps for each element.</p></details></div>
+    <p class="guide-note">For lab work and exams, follow your instructor’s rounding rules. These tools are for learning and quick checks.</p>
+    </section>
+    <!-- GUIDE:END -->
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../shared/js/utils.js"></script>
+  <script src="../../shared/js/site-config.js"></script>
+  <script src="../../calculators/chemistry/chemistry.js"></script>
+  <script src="../../shared/js/layout.js"></script>
+  <script src="../../shared/js/calculator-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" data-theme="blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free health calculators for BMI, BMR, daily calorie needs, body fat, ideal weight and water intake. General estimates, not medical advice." />
+  <!-- SECURITY: only this site's own files and Google Fonts may load; no inline scripts or styles (see README.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <!-- SEO:START (canonical address + link-preview tags; to change the domain use Find in Files, see README section 5) -->
+  <link rel="canonical" href="https://humpycalculator.com/calculators/health/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Humpy Calculator" />
+  <meta property="og:title" content="Health Calculators: BMI, BMR, Calorie Needs · Humpy Calculator" />
+  <meta property="og:description" content="Free health calculators for BMI, BMR, daily calorie needs, body fat, ideal weight and water intake. General estimates, not medical advice." />
+  <meta property="og:url" content="https://humpycalculator.com/calculators/health/" />
+  <!-- SEO:END -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <title>Health Calculators: BMI, BMR, Calorie Needs · Humpy Calculator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../shared/css/base.css" />
+  <link rel="stylesheet" href="../../shared/css/navbar.css" />
+  <link rel="stylesheet" href="../../shared/css/footer.css" />
+  <link rel="stylesheet" href="../../shared/css/calculator.css" />
+  <link rel="stylesheet" href="../../calculators/health/health.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="calc-hero">
+    <div class="wrap">
+      <h1>Health Calculators</h1>
+      <p>Explore BMI, BMR, daily energy, reference weight and hydration estimates.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- data-category must match the folder name and the key used in health/health.js -->
+    <div class="split-pane" id="calculator-app" data-category="health">
+      <!-- LEFT: operation + inputs (filled by calculator-engine.js) -->
+      <div class="pane pane-left">
+        <div class="field-group">
+          <label for="operation-select">Select operation</label>
+          <select id="operation-select"></select>
+        </div>
+        <div id="dynamic-fields"></div>
+        <button class="btn btn-primary btn-block" id="calculate-btn">Calculate Result</button>
+      </div>
+
+      <!-- RIGHT: step-by-step solution -->
+      <div class="pane pane-right">
+        <div class="pane-right-head">
+          <h3>Solution</h3>
+          <span class="badge" id="solution-badge">Ready</span>
+        </div>
+        <div id="solution-body">
+          <p class="solution-placeholder">Fill in the values on the left and press Calculate Result to see a step-by-step solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculation details, common formulas + related calculators -->
+    <div id="calculation-info" class="calculation-info-wrap" aria-live="polite"></div>
+
+    <div class="calc-lower">
+      <div>
+        <h2 class="section-title">Common formulas</h2>
+        <div class="formula-list" id="formula-list"></div>
+      </div>
+      <div>
+        <h2 class="section-title">Related calculators</h2>
+        <div class="related-list" id="related-list"></div>
+      </div>
+    </div>
+
+    <!-- GUIDE:START (written content; edit freely, keep it plain HTML) -->
+    <section class="calc-guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">About the Health calculators</h2>
+    <div class="guide-intro"><p>These calculators give general estimates for body mass index, daily energy needs, ideal weight, body fat and water intake. They are designed to help you understand the numbers and the formulas behind them, not to diagnose or treat anything.</p><p>Estimates are based on population averages. Your own body, age, muscle mass, health history and medicines can make the real figures different. Please talk to a doctor or a registered dietitian before you change your diet, exercise or medication.</p></div>
+    <h3>What you can calculate</h3>
+    <ul class="guide-tags"><li>BMI</li><li>BMR</li><li>Calorie Needs</li><li>Body Fat %</li><li>Ideal Weight</li><li>Water Intake</li></ul>
+    <h3>Worked examples</h3>
+    <div class="guide-examples"><article class="guide-example"><h4>BMI</h4><p>Weight: 70 kg</p><p>Height: 175 cm</p><p>BMI = 70 ÷ 1.75²</p><p class="guide-answer">Answer: 22.86</p></article><article class="guide-example"><h4>BMR (Mifflin–St Jeor)</h4><p>Man, 25 years, 70 kg, 175 cm</p><p>10 × 70 + 6.25 × 175 − 5 × 25 + 5</p><p class="guide-answer">Answer: about 1,674 kcal/day</p></article><article class="guide-example"><h4>Daily calorie needs</h4><p>Same person, light activity (× 1.375)</p><p>1,674 × 1.375</p><p class="guide-answer">Answer: about 2,301 kcal/day</p></article></div>
+    <h3>Tips for accurate results</h3>
+    <ul class="guide-tips"><li>You can switch between kilograms and pounds, and between centimetres, inches, feet and metres, so use whichever you know.</li><li>For Calorie Needs, choose the activity level that honestly matches your week. Picking a higher level than real life makes the estimate too high.</li><li>Treat every result as a starting point to discuss with a professional, not as a target or a rule.</li></ul>
+    <h3>Frequently asked questions</h3>
+    <div class="guide-faq"><details><summary>Is BMI accurate for everyone?</summary><p>No. BMI uses only height and weight, so it cannot tell muscle from fat and it ignores body shape. It is a screening number, not a diagnosis. The BMR and Calorie Needs calculators are meant for adults (18 and above).</p></details><details><summary>What are BMR and calorie needs?</summary><p>BMR is the energy your body uses at complete rest. Calorie Needs multiplies BMR by an activity factor to estimate the energy you use in a typical day (called TDEE). Both are estimates, not a personal diet plan.</p></details><details><summary>How is body fat estimated?</summary><p>The Body Fat calculator uses the US Navy circumference method, which works from waist, neck and height (and hip for women). It can be off by several percentage points, so use it to track general changes, not as a precise measurement.</p></details><details><summary>How is water intake estimated?</summary><p>The calculator uses about 0.033 litres per kilogram of body weight plus 0.35 litres for every 30 minutes of activity. Real needs also depend on heat, health and medicines, so follow your doctor’s advice if you have a medical condition.</p></details><details><summary>Can I use these results to plan a diet?</summary><p>They give a starting estimate only. For a personal plan, especially if you have a health condition, are pregnant, or are under 18, speak to a doctor or a registered dietitian.</p></details></div>
+    <p class="guide-note"><strong>Not medical advice.</strong> These calculators give general estimates for learning and information. They cannot diagnose, treat or prevent any condition. If you are worried about your health, please see a qualified health professional.</p>
+    </section>
+    <!-- GUIDE:END -->
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../shared/js/utils.js"></script>
+  <script src="../../shared/js/site-config.js"></script>
+  <script src="../../calculators/health/health.js"></script>
+  <script src="../../shared/js/layout.js"></script>
+  <script src="../../shared/js/calculator-engine.js"></script>
+  <script src="../../shared/js/disclaimer.js"></script>
+</body>
+</html>

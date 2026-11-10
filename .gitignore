@@ -1,0 +1,16 @@
+# Developer-only files: never push or deploy these
+/docs/
+/.vscode/
+/.idea/
+
+# Operating-system junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local files / secrets (this site has none, but keep it safe for the future)
+.env
+.env.*
+*.log
+*.zip
+node_modules/

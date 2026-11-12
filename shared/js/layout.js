@@ -61,13 +61,19 @@ const navbarHTML = `
     </div>
   </div>
 </header>`;
-
+// SOCIAL LINKS ARE HERE
+const SOCIAL_LINKS = {
+  facebook: "https://www.facebook.com/profile.php?id=61596063128253",
+  instagram: "https://www.instagram.com/humpycalculator/",
+  tiktok: "https://www.tiktok.com/@humpycalculator", // TODO: add the TikTok link here later
+};
 // Social icons (addresses come from SITE.social in site-config.js). Only "#" or https:// links are accepted.
 const SOCIAL_ICONS = {
   facebook: { label: "Facebook", svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8.3v3h2.5V21h2.7z"></path></svg>` },
   instagram: { label: "Instagram", svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1"></circle></svg>` },
+  tiktok: { label: "TikTok", svg: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.2a3.7 3.7 0 1 1-3.7-3.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 3c.3 2.6 2 4.4 5 4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>` },
 };
-const socialHTML = Object.entries(SITE.social || {})
+const socialHTML = Object.entries(SOCIAL_LINKS)
   .filter(([name, url]) => url && SOCIAL_ICONS[name])
   .map(([name, url]) => {
     const live = /^https:\/\//i.test(url);
